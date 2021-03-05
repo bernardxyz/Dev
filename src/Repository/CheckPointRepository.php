@@ -3,48 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\CheckPoint;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\Common\BaseRepository;
 
-/**
- * @method CheckPoint|null find($id, $lockMode = null, $lockVersion = null)
- * @method CheckPoint|null findOneBy(array $criteria, array $orderBy = null)
- * @method CheckPoint[]    findAll()
- * @method CheckPoint[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class CheckPointRepository extends ServiceEntityRepository
+class CheckPointRepository extends BaseRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected function getEntityName()
     {
-        parent::__construct($registry, CheckPoint::class);
+        return CheckPoint::class;
     }
 
-    // /**
-    //  * @return CheckPoint[] Returns an array of CheckPoint objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CheckPoint
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
