@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CheckPointTypeRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,15 @@ class CheckPointType
      * @ORM\Column(type="time")
      */
     private $relTime;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CheckPoint", mappedBy="checkPointType")
+     */
+    private $checkPoint;
+
+    public function __construct()
+    {
+        $this->checkPoint = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +81,36 @@ class CheckPointType
     public function setRelTime(DateTimeInterface $relTime): self
     {
         $this->relTime = $relTime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CheckPoint[]
+     */
+    public function getCheckPoint(): Collection
+    {
+        return $this->checkPoint;
+    }
+
+    public function addCheckPoint(CheckPoint $checkPoint): self
+    {
+        if (!$this->checkPoint->contains($checkPoint)) {
+            $this->checkPoint[] = $checkPoint;
+            $checkPoint->setCheckPointType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCheckPoint(CheckPoint $checkPoint): self
+    {
+        if ($this->checkPoint->removeElement($checkPoint)) {
+            // set the owning side to null (unless already changed)
+            if ($checkPoint->getCheckPointType() === $this) {
+                $checkPoint->setCheckPointType(null);
+            }
+        }
 
         return $this;
     }

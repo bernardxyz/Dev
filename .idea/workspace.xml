@@ -6,6 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="8cf6a7d3-c5a2-4b65-b4aa-af48e2e1df72" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210301140925.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CheckPoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CheckPoint.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CheckPointType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CheckPointType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Country.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Organization.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Organization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Race.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Race.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/RaceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/RaceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/UserCheckPoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserCheckPoint.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/UserRace.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserRace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/UserRaceStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserRaceStatus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +197,12 @@
       <workItem from="1614447102479" duration="942000" />
       <workItem from="1614470067880" duration="44000" />
       <workItem from="1614470123062" duration="402000" />
-      <workItem from="1614600441734" duration="6345000" />
+      <workItem from="1614600441734" duration="9302000" />
+      <workItem from="1614630260319" duration="1055000" />
+      <workItem from="1614893182982" duration="608000" />
+      <workItem from="1614895668126" duration="2217000" />
+      <workItem from="1614898322310" duration="1036000" />
+      <workItem from="1614900897243" duration="4710000" />
     </task>
     <servers />
   </component>

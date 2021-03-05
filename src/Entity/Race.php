@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\RaceRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass=RaceRepository::class)
@@ -48,6 +51,38 @@ class Race
      */
     private $maxTime;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="race")
+     * @JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\RaceType", inversedBy="race")
+     */
+    private $racetype;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="race")
+     */
+    private $organizaion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CheckPoint", mappedBy="race")
+     */
+    private $checkpoint;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserRace", mappedBy="race")
+     */
+    private $userRace;
+    public function __construct()
+    {
+        $this->organizaion = new ArrayCollection();
+        $this->checkpoint = new ArrayCollection();
+        $this->userRace = new ArrayCollection();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +156,127 @@ class Race
     public function setMaxTime(DateTimeInterface $maxTime): self
     {
         $this->maxTime = $maxTime;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getRacetype(): ?RaceType
+    {
+        return $this->racetype;
+    }
+
+    public function setRacetype(?RaceType $racetype): self
+    {
+        $this->racetype = $racetype;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Organization[]
+     */
+    public function getOrganizaion(): Collection
+    {
+        return $this->organizaion;
+    }
+
+    public function addOrganizaion(Organization $organizaion): self
+    {
+        if (!$this->organizaion->contains($organizaion)) {
+            $this->organizaion[] = $organizaion;
+            $organizaion->setRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrganizaion(Organization $organizaion): self
+    {
+        if ($this->organizaion->removeElement($organizaion)) {
+            // set the owning side to null (unless already changed)
+            if ($organizaion->getRace() === $this) {
+                $organizaion->setRace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setOrganizaion(?Organization $organizaion): self
+    {
+        $this->organizaion = $organizaion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CheckPoint[]
+     */
+    public function getCheckpoint(): Collection
+    {
+        return $this->checkpoint;
+    }
+
+    public function addCheckpoint(CheckPoint $checkpoint): self
+    {
+        if (!$this->checkpoint->contains($checkpoint)) {
+            $this->checkpoint[] = $checkpoint;
+            $checkpoint->setRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCheckpoint(CheckPoint $checkpoint): self
+    {
+        if ($this->checkpoint->removeElement($checkpoint)) {
+            // set the owning side to null (unless already changed)
+            if ($checkpoint->getRace() === $this) {
+                $checkpoint->setRace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserRace[]
+     */
+    public function getUserRace(): Collection
+    {
+        return $this->userRace;
+    }
+
+    public function addUserRace(UserRace $userRace): self
+    {
+        if (!$this->userRace->contains($userRace)) {
+            $this->userRace[] = $userRace;
+            $userRace->setRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRace(UserRace $userRace): self
+    {
+        if ($this->userRace->removeElement($userRace)) {
+            // set the owning side to null (unless already changed)
+            if ($userRace->getRace() === $this) {
+                $userRace->setRace(null);
+            }
+        }
 
         return $this;
     }

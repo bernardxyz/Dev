@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRaceRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +24,25 @@ class UserRace
      */
     private $registrationDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserRaceStatus", inversedBy="userRace")
+     */
+    private $userRaceStatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userRace")
+     */
+    private $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Race", inversedBy="userRace")
+     */
+    private $race;
+
+    public function __construct()
+    {
+        $this->userRace = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +56,76 @@ class UserRace
     public function setRegistrationDate(DateTimeInterface $registrationDate): self
     {
         $this->registrationDate = $registrationDate;
+
+        return $this;
+    }
+
+    public function getUserRace(): ArrayCollection
+    {
+        return $this->userRace;
+    }
+
+    public function setUserRace(?UserRaceStatus $userRace): self
+    {
+        $this->userRace = $userRace;
+
+        return $this;
+    }
+
+    public function addUserRace(UserRaceStatus $userRace): self
+    {
+        if (!$this->userRace->contains($userRace)) {
+            $this->userRace[] = $userRace;
+            $userRace->setUserRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRace(UserRaceStatus $userRace): self
+    {
+        if ($this->userRace->removeElement($userRace)) {
+            // set the owning side to null (unless already changed)
+            if ($userRace->getUserRace() === $this) {
+                $userRace->setUserRace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUserRaceStatus(): ?UserRaceStatus
+    {
+        return $this->userRaceStatus;
+    }
+
+    public function setUserRaceStatus(?UserRaceStatus $userRaceStatus): self
+    {
+        $this->userRaceStatus = $userRaceStatus;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getRace(): ?Race
+    {
+        return $this->race;
+    }
+
+    public function setRace(?Race $race): self
+    {
+        $this->race = $race;
 
         return $this;
     }

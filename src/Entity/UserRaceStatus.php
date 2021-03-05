@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRaceStatusRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,16 @@ class UserRaceStatus
      */
     private $status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserRace", mappedBy="userRaceStatus")
+     */
+    private $userRace;
+
+    public function __construct()
+    {
+        $this->userRace = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +47,40 @@ class UserRaceStatus
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUserRace(): ArrayCollection
+    {
+        return $this->userRace;
+    }
+
+    public function setUserRace(?UserRace $userRace): self
+    {
+        $this->userRace = $userRace;
+
+        return $this;
+    }
+
+    public function addUserRace(UserRace $userRace): self
+    {
+        if (!$this->userRace->contains($userRace)) {
+            $this->userRace[] = $userRace;
+            $userRace->setUserRaceStatus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRace(UserRace $userRace): self
+    {
+        if ($this->userRace->removeElement($userRace)) {
+            // set the owning side to null (unless already changed)
+            if ($userRace->getUserRaceStatus() === $this) {
+                $userRace->setUserRaceStatus(null);
+            }
+        }
 
         return $this;
     }
