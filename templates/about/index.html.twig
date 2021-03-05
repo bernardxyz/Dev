@@ -31,7 +31,7 @@
                         <td> {{ user.id }} </td>
                         <td> {{ user.getFullName }} </td>
                         <td> {{ user.birthDate.format('d/m/Y') }}</td>
-                        <td> {{ user.country.name }} </td>
+                        <td> {{ user.city.name }} </td>
                         <td> <a href="#"> Edit </a></td>
                         <td> <a href="{{ path('app_delete', { id: user.id }) }}"> Delete </a></td>
                     </tr>
