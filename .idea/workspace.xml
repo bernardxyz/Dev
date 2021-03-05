@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8cf6a7d3-c5a2-4b65-b4aa-af48e2e1df72" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/about/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,6 +195,7 @@
       <workItem from="1614895668126" duration="2217000" />
       <workItem from="1614898322310" duration="1036000" />
       <workItem from="1614900897243" duration="5189000" />
+      <workItem from="1614951695637" duration="1583000" />
     </task>
     <servers />
   </component>

@@ -21,7 +21,8 @@
                     <td>ID</td>
                     <td>Korisnik</td>
                     <td>Datum rođenja</td>
-                    <td>Država</td>
+                    <td>Grad</td>
+                    <td>Tip</td>
                     <td>Opcije</td>
                 </tr>
                 </thead>
@@ -32,6 +33,7 @@
                         <td> {{ user.getFullName }} </td>
                         <td> {{ user.birthDate.format('d/m/Y') }}</td>
                         <td> {{ user.city.name }} </td>
+                        <td> {{ user.userType.name }}</td>
                         <td> <a href="#"> Edit </a></td>
                         <td> <a href="{{ path('app_delete', { id: user.id }) }}"> Delete </a></td>
                     </tr>

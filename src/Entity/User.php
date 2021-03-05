@@ -198,7 +198,7 @@ class User
         return $this;
     }
 
-    public function getUserType(): ArrayCollection
+    public function getUserType(): ?UserType
     {
         return $this->userType;
     }
