@@ -41,7 +41,12 @@ class Notifications
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="notifications")
      */
     private $organization;
-    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NotificationType", inversedBy="notification")
+     */
+    private $notificationType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Notifications
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getNotificationType(): ?NotificationType
+    {
+        return $this->notificationType;
+    }
+
+    public function setNotificationType(?NotificationType $notificationType): self
+    {
+        $this->notificationType = $notificationType;
 
         return $this;
     }
