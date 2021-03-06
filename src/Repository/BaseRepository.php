@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Repository\Common;
+namespace App\Repository;
 
-use App\Entity\Federation;
-use App\Entity\User\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Internal\Hydration\IterableResult;
 use Doctrine\DBAL\Statement;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

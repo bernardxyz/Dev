@@ -3,48 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\RaceType;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @method RaceType|null find($id, $lockMode = null, $lockVersion = null)
- * @method RaceType|null findOneBy(array $criteria, array $orderBy = null)
- * @method RaceType[]    findAll()
- * @method RaceType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class RaceTypeRepository extends ServiceEntityRepository
+class RaceTypeRepository extends BaseRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected function getEntityName()
     {
-        parent::__construct($registry, RaceType::class);
+        return RaceType::class;
     }
-
-    // /**
-    //  * @return RaceType[] Returns an array of RaceType objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?RaceType
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
