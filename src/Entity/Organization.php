@@ -52,10 +52,16 @@ class Organization
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notifications", mappedBy="organization")
+     */
+    private $notifications;
+
     public function __construct()
     {
         $this->race = new ArrayCollection();
         $this->user = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,6 +187,36 @@ class Organization
             // set the owning side to null (unless already changed)
             if ($user->getOrganization() === $this) {
                 $user->setOrganization(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notifications[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notifications $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setOrganization($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notifications $notification): self
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getOrganization() === $this) {
+                $notification->setOrganization(null);
             }
         }
 

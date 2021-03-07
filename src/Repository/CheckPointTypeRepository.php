@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\CheckPointType;
-use App\Repository\Common\BaseRepository;
 
 class CheckPointTypeRepository extends BaseRepository
 {
