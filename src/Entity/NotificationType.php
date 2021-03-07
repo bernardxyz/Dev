@@ -80,4 +80,5 @@ class NotificationType
 
         return $this;
     }
+
 }

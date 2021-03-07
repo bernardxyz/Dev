@@ -38,11 +38,6 @@ class UserRace
      */
     private $race;
 
-    public function __construct()
-    {
-        $this->userRace = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -56,40 +51,6 @@ class UserRace
     public function setRegistrationDate(DateTimeInterface $registrationDate): self
     {
         $this->registrationDate = $registrationDate;
-
-        return $this;
-    }
-
-    public function getUserRace(): ArrayCollection
-    {
-        return $this->userRace;
-    }
-
-    public function setUserRace(?UserRaceStatus $userRace): self
-    {
-        $this->userRace = $userRace;
-
-        return $this;
-    }
-
-    public function addUserRace(UserRaceStatus $userRace): self
-    {
-        if (!$this->userRace->contains($userRace)) {
-            $this->userRace[] = $userRace;
-            $userRace->setUserRace($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserRace(UserRaceStatus $userRace): self
-    {
-        if ($this->userRace->removeElement($userRace)) {
-            // set the owning side to null (unless already changed)
-            if ($userRace->getUserRace() === $this) {
-                $userRace->setUserRace(null);
-            }
-        }
 
         return $this;
     }

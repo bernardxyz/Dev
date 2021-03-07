@@ -94,7 +94,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->userCheckPoint = new ArrayCollection();
-        //$this->userType = new ArrayCollection();
         $this->userRace = new ArrayCollection();
         $this->notifications = new ArrayCollection();
         $this->userNotifications = new ArrayCollection();
@@ -124,7 +123,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -151,7 +150,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -229,16 +228,24 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUserCheckPoint(): ArrayCollection
+    public function getCity(): ?City
     {
-        return $this->userCheckPoint;
+        return $this->city;
     }
 
-    public function setUserCheckPoint(?UserCheckPoint $userCheckPoint): self
+    public function setCity(?City $city): self
     {
-        $this->userCheckPoint = $userCheckPoint;
+        $this->city = $city;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|UserCheckPoint[]
+     */
+    public function getUserCheckPoint(): Collection
+    {
+        return $this->userCheckPoint;
     }
 
     public function addUserCheckPoint(UserCheckPoint $userCheckPoint): self
@@ -271,28 +278,6 @@ class User implements UserInterface
     public function setUserType(?UserType $userType): self
     {
         $this->userType = $userType;
-
-        return $this;
-    }
-
-    public function addUserType(UserType $userType): self
-    {
-        if (!$this->userType->contains($userType)) {
-            $this->userType[] = $userType;
-            $userType->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserType(UserType $userType): self
-    {
-        if ($this->userType->removeElement($userType)) {
-            // set the owning side to null (unless already changed)
-            if ($userType->getUser() === $this) {
-                $userType->setUser(null);
-            }
-        }
 
         return $this;
     }
@@ -335,18 +320,6 @@ class User implements UserInterface
                 $userRace->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCity(): ?City
-    {
-        return $this->city;
-    }
-
-    public function setCity(?City $city): self
-    {
-        $this->city = $city;
 
         return $this;
     }

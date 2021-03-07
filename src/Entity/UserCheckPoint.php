@@ -33,11 +33,6 @@ class UserCheckPoint
      */
     private $checkPoint;
 
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -55,34 +50,9 @@ class UserCheckPoint
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUser(): Collection
+    public function getUser(): ?User
     {
         return $this->user;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setUserCheckPoint($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getUserCheckPoint() === $this) {
-                $user->setUserCheckPoint(null);
-            }
-        }
-
-        return $this;
     }
 
     public function setUser(?User $user): self

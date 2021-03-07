@@ -51,16 +51,12 @@ class UserRaceStatus
         return $this;
     }
 
-    public function getUserRace(): ArrayCollection
+    /**
+     * @return Collection|UserRace[]
+     */
+    public function getUserRace(): Collection
     {
         return $this->userRace;
-    }
-
-    public function setUserRace(?UserRace $userRace): self
-    {
-        $this->userRace = $userRace;
-
-        return $this;
     }
 
     public function addUserRace(UserRace $userRace): self
