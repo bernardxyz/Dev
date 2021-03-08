@@ -76,13 +76,13 @@ class Race
      * @ORM\OneToMany(targetEntity="App\Entity\UserRace", mappedBy="race")
      */
     private $userRace;
+
     public function __construct()
     {
-        $this->organizaion = new ArrayCollection();
         $this->checkpoint = new ArrayCollection();
         $this->userRace = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -184,34 +184,9 @@ class Race
         return $this;
     }
 
-    /**
-     * @return Collection|Organization[]
-     */
-    public function getOrganizaion(): Collection
+    public function getOrganizaion(): ?Organization
     {
         return $this->organizaion;
-    }
-
-    public function addOrganizaion(Organization $organizaion): self
-    {
-        if (!$this->organizaion->contains($organizaion)) {
-            $this->organizaion[] = $organizaion;
-            $organizaion->setRace($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrganizaion(Organization $organizaion): self
-    {
-        if ($this->organizaion->removeElement($organizaion)) {
-            // set the owning side to null (unless already changed)
-            if ($organizaion->getRace() === $this) {
-                $organizaion->setRace(null);
-            }
-        }
-
-        return $this;
     }
 
     public function setOrganizaion(?Organization $organizaion): self

@@ -117,16 +117,12 @@ class Organization
         return $this;
     }
 
-    public function getRace(): ArrayCollection
+    /**
+     * @return Collection|Race[]
+     */
+    public function getRace(): Collection
     {
         return $this->race;
-    }
-
-    public function setRace(?Race $race): self
-    {
-        $this->race = $race;
-
-        return $this;
     }
 
     public function addRace(Race $race): self
@@ -222,4 +218,5 @@ class Organization
 
         return $this;
     }
+
 }
