@@ -15,9 +15,8 @@ class AboutController extends AbstractController
      */
     public function index(CheckPointRepository $checkPointRepository): Response
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        return $this->render('about/index.html.twig' , array('users' => $users));
+        return $this->render('about/index.html.twig');
     }
 
     /**
