@@ -38,6 +38,7 @@ class User implements UserInterface
     private $password;
 
     /**
+     *
      * @ORM\Column(type="string", length=30)
      */
     private $firstName;
@@ -48,7 +49,7 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthDate;
 
@@ -202,6 +203,11 @@ class User implements UserInterface
         $this->lastName = $lastName;
 
         return $this;
+    }
+
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
     public function getBirthDate(): ?DateTimeInterface
