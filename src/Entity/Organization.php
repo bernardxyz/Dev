@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\OrganizationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=OrganizationRepository::class)
+ * @ORM\Entity()
  */
 class Organization
 {
@@ -152,6 +151,11 @@ class Organization
     public function getCity(): ?City
     {
         return $this->city;
+    }
+
+    public function getCityName(): ?string
+    {
+        return $this->city->getName();
     }
 
     public function setCity(?City $city): self

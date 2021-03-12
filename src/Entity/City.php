@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CityRepository::class)
+ * @ORM\Entity()
  */
 class City
 {
@@ -48,6 +47,11 @@ class City
         $this->users = new ArrayCollection();
         $this->races = new ArrayCollection();
         $this->organizations = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int

@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRaceRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UserRaceRepository::class)
+ * @ORM\Entity()
  */
 class UserRace
 {

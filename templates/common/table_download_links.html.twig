@@ -1,0 +1,9 @@
+
+<div class="row">
+    <div class="col-lg-12 table-actions " style="padding: 10px 20px;">
+
+        <a href="{{ path(app.request.attributes.get('_route')) }}" class="color-red"> Ukloni filtere <i class="far fa-times-circle"></i></a>
+        <a href="{{ app.request.uri }}" class="color-teal"> Osvježi <i class="fas fa-sync-alt"></i></a>
+        <a href="{{ app.request.uri ~ '?download=xls' }}">Preuzmi <i class="fas fa-download"></i></a>
+    </div>
+</div>

@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\NotificationsRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=NotificationsRepository::class)
+ * @ORM\Entity()
  */
 class Notifications
 {

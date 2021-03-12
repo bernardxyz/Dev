@@ -1,0 +1,24 @@
+{% extends '/common/app.html.twig' %}
+
+{% block title %}Uređivanje organizacije{% endblock %}
+
+{% block content %}
+
+    <div class="row" style="height: 20px"></div>
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Uređivanje organizacije</div>
+                <div class="panel-body">
+
+                    {{ include('organization/_form.html.twig') }}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

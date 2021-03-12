@@ -2,25 +2,21 @@
 
 namespace App\Repository;
 
+use App\Entity\Organization;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Internal\Hydration\IterableResult;
 use Doctrine\DBAL\Statement;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 abstract class BaseRepository
 {
     /** @var EntityManagerInterface  */
     protected $em;
-    /** @var TokenStorageInterface  */
-    private $tokenStorage;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        TokenStorageInterface $tokenStorage
+        EntityManagerInterface $entityManager
     )
     {
         $this->em = $entityManager;
-        $this->tokenStorage = $tokenStorage;
         $this->addRepository();
     }
 

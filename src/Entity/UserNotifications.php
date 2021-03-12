@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\UserNotificationsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UserNotificationsRepository::class)
+ * @ORM\Entity()
  */
 class UserNotifications
 {

@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UserTypeRepository::class)
+ * @ORM\Entity()
  */
 class UserType
 {

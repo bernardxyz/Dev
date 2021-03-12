@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\UserCheckPointRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UserCheckPointRepository::class)
+ * @ORM\Entity()
  */
 class UserCheckPoint
 {

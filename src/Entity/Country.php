@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CountryRepository::class)
+ * @ORM\Entity()
  */
 class Country
 {

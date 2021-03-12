@@ -1,0 +1,61 @@
+{% extends '/common/app.html.twig' %}
+
+{% block title %}Korisnik{% endblock %}
+
+{% block content %}
+
+    <div class="row" style="height: 20px"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Korisnik</h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Ime</th>
+                    <td>{{ user.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Prezime</th>
+                    <td>{{ user.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Omogućena prijava</th>
+                    <td>{{ user.enabled ? 'Da' : 'Ne' }}</td>
+                </tr>
+                <tr>
+                    <th>Broj telefona</th>
+                    <td>{{ user.phone }}</td>
+                </tr>
+                <tr>
+                    <th>Datum kreiranja</th>
+                    <td>{{ user.createdAt ? user.createdAtFormatted }}</td>
+                </tr>
+                <tr>
+                    <th>Posljednja prijava</th>
+                    <td>{{ user.lastLogin ? user.lastLoginFormatted }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="col-lg-12" style="margin:15px 0;">
+                <a href="{{ path('admin_user_edit', {'id': user.id}) }}">
+                    <button type="button" class="btn btn-info">Uredi</button>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

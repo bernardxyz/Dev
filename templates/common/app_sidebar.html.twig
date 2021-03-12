@@ -1,0 +1,33 @@
+<dpošaiv id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+
+    <div class="profile-sidebar">
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">{{ app.user.fullName }}</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="divider"></div>
+
+    <ul class="nav menu">
+
+        <li class="{{ activeMenu.dashboard }}">
+            <a href="{{ path('admin_dashboard') }}"><em class="fas fa-tachometer-alt s-menu-icon"></em> Početna</a>
+        </li>
+
+        <li class="{{ activeMenu.organization }}">
+            <a href="{{ path('organization_index') }}"><em class="far fa-building s-menu-icon"></em> Organizacije</a>
+        </li>
+        <li class="{{ activeMenu.user }}">
+            <a href="{{ path('admin_dashboard') }}"><em class="far fa-file-alt s-menu-icon"></em> Uplate</a>
+        </li>
+
+    </ul>
+
+    <div class="divider">
+        <hr>
+    </div>
+
+    <ul class="nav menu">
+        <li><a href="{{ path('admin_dashboard') }}"><em class="fa fa-power-off">&nbsp;</em> Odjava</a></li>
+    </ul>
+</dpošaiv>
