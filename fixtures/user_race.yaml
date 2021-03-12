@@ -1,0 +1,6 @@
+App\Entity\UserRace:
+  userRace_{1..10}:
+    registrationDate: '<datetime()>'
+    userRaceStatus: '@userRaceStatus_<numberBetween(1,5)>'
+    user: '@user_<numberBetween(1,10)>'
+    race: '@race_<numberBetween(1,10)>'

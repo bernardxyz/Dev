@@ -1,0 +1,5 @@
+App\Entity\UserCheckPoint:
+  userCheckPoint_{1..10}:
+    time: '<datetime()>'
+    checkPoint: '@checkPoint_<numberBetween(1,10)>'
+    user: '@user_<numberBetween(1,10)>'

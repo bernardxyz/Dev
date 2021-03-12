@@ -23,7 +23,7 @@ class CheckPoint
      */
     private $number;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Race", inversedBy="checkpoint")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Race", inversedBy="checkpoints")
      */
     private $race;
 

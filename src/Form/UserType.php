@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Country;
+use App\Entity\City;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -38,9 +38,9 @@ class UserType extends AbstractType
                     'Žensko' => false
                 ]
             ])
-            ->add('country', EntityType::class, [
-                'label' => 'Država',
-                'class' => Country::class
+            ->add('city', EntityType::class, [
+                'label' => 'Grad',
+                'class' => City::class
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresa e-pošte'

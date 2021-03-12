@@ -1,0 +1,8 @@
+App\Entity\CheckPoint:
+  checkPoint_{1..10}:
+    race: '@race_<numberBetween(1,10)>'
+    checkPointType: '@checkPointType_<numberBetween(1,10)>'
+    number: '30'
+
+
+#php bin/console hautelook:fixtures:load

@@ -38,19 +38,21 @@ class Organization
      * @ORM\Column(type="string", length=30)
      */
     private $phoneNumber;
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Race", mappedBy="organizaion")
+     * @ORM\OneToMany(targetEntity="App\Entity\Race", mappedBy="organization")
      */
     private $race;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="organization")
+     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="organizations")
      */
     private $city;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="organization")
      */
-    private $user;
+    private $users;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Notifications", mappedBy="organization")
@@ -60,7 +62,7 @@ class Organization
     public function __construct()
     {
         $this->race = new ArrayCollection();
-        $this->user = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->notifications = new ArrayCollection();
     }
 
@@ -162,15 +164,15 @@ class Organization
     /**
      * @return Collection|User[]
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
             $user->setOrganization($this);
         }
 
@@ -179,7 +181,7 @@ class Organization
 
     public function removeUser(User $user): self
     {
-        if ($this->user->removeElement($user)) {
+        if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
             if ($user->getOrganization() === $this) {
                 $user->setOrganization(null);
