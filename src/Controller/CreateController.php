@@ -14,7 +14,6 @@ class CreateController extends AbstractController
     /**
      * @Route("/create", name="app_create")
      */
-
     public function index(Request $request): Response
     {
         $user = new User();
@@ -35,7 +34,7 @@ class CreateController extends AbstractController
         }
 
         return $this->render('form/index.html.twig', [
-            'usercreate' => $form->createView(),
+            'userCreate' => $form->createView(),
         ]);
     }
 }

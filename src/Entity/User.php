@@ -59,7 +59,7 @@ class User implements UserInterface
     private $sex;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="users")
      */
     private $city;
 
@@ -74,7 +74,7 @@ class User implements UserInterface
     private $userType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="users")
      */
     private $organization;
 

@@ -52,7 +52,7 @@ class Race
     private $maxTime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="race")
+     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="races")
      * @JoinColumn(name="city_id", referencedColumnName="id")
      */
     private $city;
@@ -65,12 +65,12 @@ class Race
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="race")
      */
-    private $organizaion;
+    private $organization;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CheckPoint", mappedBy="race")
      */
-    private $checkpoint;
+    private $checkpoints;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserRace", mappedBy="race")
@@ -79,7 +79,7 @@ class Race
 
     public function __construct()
     {
-        $this->checkpoint = new ArrayCollection();
+        $this->checkpoints = new ArrayCollection();
         $this->userRace = new ArrayCollection();
     }
 
@@ -184,14 +184,14 @@ class Race
         return $this;
     }
 
-    public function getOrganizaion(): ?Organization
+    public function getOrganization(): ?Organization
     {
-        return $this->organizaion;
+        return $this->organization;
     }
 
-    public function setOrganizaion(?Organization $organizaion): self
+    public function setOrganization(?Organization $organization): self
     {
-        $this->organizaion = $organizaion;
+        $this->organization = $organization;
 
         return $this;
     }
@@ -199,24 +199,24 @@ class Race
     /**
      * @return Collection|CheckPoint[]
      */
-    public function getCheckpoint(): Collection
+    public function getCheckpoints(): Collection
     {
-        return $this->checkpoint;
+        return $this->checkpoints;
     }
 
-    public function addCheckpoint(CheckPoint $checkpoint): self
+    public function addCheckpoints(CheckPoint $checkpoint): self
     {
-        if (!$this->checkpoint->contains($checkpoint)) {
-            $this->checkpoint[] = $checkpoint;
+        if (!$this->checkpoints->contains($checkpoint)) {
+            $this->checkpoints[] = $checkpoint;
             $checkpoint->setRace($this);
         }
 
         return $this;
     }
 
-    public function removeCheckpoint(CheckPoint $checkpoint): self
+    public function removeCheckpoints(CheckPoint $checkpoint): self
     {
-        if ($this->checkpoint->removeElement($checkpoint)) {
+        if ($this->checkpoints->removeElement($checkpoint)) {
             // set the owning side to null (unless already changed)
             if ($checkpoint->getRace() === $this) {
                 $checkpoint->setRace(null);

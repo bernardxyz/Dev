@@ -20,7 +20,7 @@ class City
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=100)
      */
     private $name;
 
@@ -32,22 +32,22 @@ class City
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="city")
      */
-    private $user;
+    private $users;
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Race", mappedBy="city")
      */
-    private $race;
+    private $races;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="city")
      */
-    private $organization;
+    private $organizations;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
-        $this->race = new ArrayCollection();
-        $this->organization = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->races = new ArrayCollection();
+        $this->organizations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,15 +82,15 @@ class City
     /**
      * @return Collection|User[]
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
             $user->setCity($this);
         }
 
@@ -99,7 +99,7 @@ class City
 
     public function removeUser(User $user): self
     {
-        if ($this->user->removeElement($user)) {
+        if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
             if ($user->getCity() === $this) {
                 $user->setCity(null);
@@ -112,15 +112,15 @@ class City
     /**
      * @return Collection|Race[]
      */
-    public function getRace(): Collection
+    public function getRaces(): Collection
     {
-        return $this->race;
+        return $this->races;
     }
 
     public function addRace(Race $race): self
     {
-        if (!$this->race->contains($race)) {
-            $this->race[] = $race;
+        if (!$this->races->contains($race)) {
+            $this->races[] = $race;
             $race->setCity($this);
         }
 
@@ -129,7 +129,7 @@ class City
 
     public function removeRace(Race $race): self
     {
-        if ($this->race->removeElement($race)) {
+        if ($this->races->removeElement($race)) {
             // set the owning side to null (unless already changed)
             if ($race->getCity() === $this) {
                 $race->setCity(null);
@@ -142,15 +142,15 @@ class City
     /**
      * @return Collection|Organization[]
      */
-    public function getOrganization(): Collection
+    public function getOrganizations(): Collection
     {
-        return $this->organization;
+        return $this->organizations;
     }
 
     public function addOrganization(Organization $organization): self
     {
-        if (!$this->organization->contains($organization)) {
-            $this->organization[] = $organization;
+        if (!$this->organizations->contains($organization)) {
+            $this->organizations[] = $organization;
             $organization->setCity($this);
         }
 
@@ -159,7 +159,7 @@ class City
 
     public function removeOrganization(Organization $organization): self
     {
-        if ($this->organization->removeElement($organization)) {
+        if ($this->organizations->removeElement($organization)) {
             // set the owning side to null (unless already changed)
             if ($organization->getCity() === $this) {
                 $organization->setCity(null);

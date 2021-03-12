@@ -1,0 +1,3 @@
+App\Entity\UserType:
+  userType_{1..3}:
+    name: '<jobTitle()>'

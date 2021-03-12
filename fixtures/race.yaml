@@ -1,0 +1,11 @@
+App\Entity\Race:
+  race_{1..10}:
+    location: '<streetName()>'
+    registrationDate: '<datetime()>'
+    raceLength: '50'
+    totalCheckPoints: '10'
+    startTime: '<datetime()>'
+    maxTime: '<datetime()>'
+    city: '@city_<numberBetween(1,10)>'
+    organization: '@organization_<numberBetween(1,10)>'
+    raceType: '@raceType_<numberBetween(1,3)>'
