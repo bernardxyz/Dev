@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enum\Sex;
+use App\Helper\DateTimeHelper;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -48,14 +51,21 @@ class User implements UserInterface
     private $lastName;
 
     /**
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthDate;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="smallint")
      */
     private $sex;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="users")
@@ -68,6 +78,7 @@ class User implements UserInterface
     private $userCheckPoint;
 
     /**
+     * @var UserType
      * @ORM\ManyToOne(targetEntity="App\Entity\UserType", inversedBy="user")
      */
     private $userType;
@@ -214,6 +225,12 @@ class User implements UserInterface
         return $this->birthDate;
     }
 
+    /** @return string */
+    public function getBirthDateFormatted(): string
+    {
+        return $this->birthDate->format(DateTimeHelper::DEFAULT_DATE_FORMAT);
+    }
+
     public function setBirthDate(DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
@@ -226,7 +243,13 @@ class User implements UserInterface
         return $this->sex;
     }
 
-    public function setSex(bool $sex): self
+    /** @return string */
+    public function getSexName():string
+    {
+        return Sex::getById($this->sex);
+    }
+
+    public function setSex(int $sex): self
     {
         $this->sex = $sex;
 
@@ -278,6 +301,14 @@ class User implements UserInterface
     public function getUserType(): ?UserType
     {
         return $this->userType;
+    }
+
+    public function getUserTypeName()
+    {
+        if($this->userType){
+            return $this->userType->getName();
+        }
+        return '';
     }
 
     public function setUserType(?UserType $userType): self
@@ -388,4 +419,22 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(): void
+    {
+        $this->createdAt = DateTimeHelper::getNew();
+    }
+
 }

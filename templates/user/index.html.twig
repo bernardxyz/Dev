@@ -1,47 +1,66 @@
 {% extends '/common/app.html.twig' %}
 
-{% block title %}Korisnici{% endblock %}
+{% block title %}Kompanije{% endblock %}
 
 {% block content %}
-    <h1>Korisnici</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Ime</th>
-                <th>Prezime</th>
-                <th>Roles</th>
-                <th>Šifra</th>
-                <th>Datum Rođenja</th>
-                <th>Sex</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.sex ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">Prikaži</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">Uredi</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row" style="height: 20px"></div>
 
-    <a href="{{ path('user_new') }}">Napravi novog</a>
+
+    {% include 'common/table_download_links.html.twig' %}
+
+    {% include 'common/filters.html.twig' %}
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Organizacije</div>
+                <div class="panel-body">
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>Email</th>
+                            <th>Datum rođenja</th>
+                            <th>Spol</th>
+                            <th>Tip</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.lastName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.birthDateFormatted }}</td>
+                                <td>{{ user.sexName }}</td>
+                                <td>{{ user.userTypeName }}</td>
+                                <td class="text-right">
+                                    <a href="{{ path('user_show', {'id': user.id}) }}">
+                                        <button type="button" class="btn btn-sm btn-info">Otvori</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            {% include 'common/table_noresults.html.twig' %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('user_new') }}">
+                        <button type="button" class="btn btn-info s-create-new-btn">Kreiraj</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
 {% endblock %}

@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Controller\Common\BaseController;
 use App\Entity\User;
-use App\Form\User1Type;
+use App\Enum\Sex;
+use App\Form\UserType;
+use App\Helper\PasswordGenerator;
+use App\Repository\UserTypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,15 +23,23 @@ class UserController extends BaseController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(
+        UserTypeRepository $userTypeRepository
+    ): Response
     {
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->findAll();
 
+        $filters = [
+            'sex' => Sex::getFormCollection(),
+            'types'=> $userTypeRepository->findAll()
+        ];
+
         return $this->render('user/index.html.twig',
             [
                 'users' => $users,
+                'filters'    => $filters,
                 'breadCrumb' => self::BREAD_CRUMB,
                 'activeMenu' => $this->activeMenu(self::ACTIVE_MENU)
             ]
@@ -41,10 +52,14 @@ class UserController extends BaseController
     public function new(Request $request): Response
     {
         $user = new User();
-        $form = $this->createForm(User1Type::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = PasswordGenerator::makeRandomPassword();
+            $user->setPassword($password);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -81,7 +96,7 @@ class UserController extends BaseController
      */
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(User1Type::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\City;
 use App\Entity\User;
+use App\Enum\Sex;
+use App\Repository\UserTypeRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,6 +19,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
+    /**
+     * @var UserTypeRepository
+     */
+    private $userTypeRepository;
+
+    public function __construct(
+        UserTypeRepository $userTypeRepository
+    )
+    {
+        $this->userTypeRepository = $userTypeRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -29,14 +43,18 @@ class UserType extends AbstractType
             ->add('birthDate', BirthdayType::class, [
                 'label' => 'Datum rođenja',
                 'placeholder' => [
-                    'year' => 'Godina', 'month' => 'Mjesec', 'day' => 'Dan',
+                    'year'  => 'Godina',
+                    'month' => 'Mjesec',
+                    'day'   => 'Dan'
                 ]
             ])
             ->add('sex', ChoiceType::class, [
                 'label' => 'Spol',
-                'choices'  => ['Muško' => true,
-                    'Žensko' => false
-                ]
+                'choices'  => Sex::getFormCollection()
+            ])
+            ->add('userType', null, [
+                'label' => 'Tip korisnika',
+                'required' => true
             ])
             ->add('city', EntityType::class, [
                 'label' => 'Grad',
@@ -44,9 +62,6 @@ class UserType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresa e-pošte'
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Lozinka'
             ])
             ->add('Spremi', SubmitType::class)
         ;

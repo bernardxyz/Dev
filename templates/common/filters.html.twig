@@ -132,6 +132,20 @@
             </div>
         {% endif %}
 
+        {% if filters.sex is defined %}
+            <div class="col-xs-6 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>Spol</label>
+                    <select class="form-control s-filter-form" name="sex">
+                        <option value="" selected class="default_item_dropdown">-- Odaberi tip --</option>
+                        {% for key, value in filters.sex %}
+                            <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        {% endif %}
+
         <div class="col-xs-6 col-md-3 col-lg-3">
             <div class="form-group">
                 <label>Pretraži</label>
