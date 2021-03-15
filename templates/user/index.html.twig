@@ -1,20 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends '/common/app.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Korisnici{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
+{% block content %}
+    <h1>Korisnici</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
+                <th>Ime</th>
+                <th>Prezime</th>
                 <th>Roles</th>
-                <th>Password</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>BirthDate</th>
+                <th>Šifra</th>
+                <th>Datum Rođenja</th>
                 <th>Sex</th>
                 <th>actions</th>
             </tr>
@@ -24,15 +24,15 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
                 <td>{{ user.birthDate ? user.birthDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.sex ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Prikaži</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Uredi</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    <a href="{{ path('user_new') }}">Napravi novog</a>
 {% endblock %}

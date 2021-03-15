@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends '/common/app.html.twig' %}
 
 {% block title %}User{% endblock %}
 
-{% block body %}
-    <h1>User</h1>
+{% block content %}
+    <h1>Korisnik</h1>
 
     <table class="table">
         <tbody>
@@ -16,23 +16,23 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
+                <th>Ime</th>
+                <td>{{ user.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Prezime</th>
+                <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>Šifra</th>
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-                <th>BirthDate</th>
+                <th>Datum rođenja</th>
                 <td>{{ user.birthDate ? user.birthDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -42,7 +42,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_index') }}">nazad na listu</a>
 
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 
