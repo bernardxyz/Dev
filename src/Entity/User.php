@@ -429,6 +429,14 @@ class User implements UserInterface
     }
 
     /**
+     * @return string
+     */
+    public function getCreatedAtFormatted(): string
+    {
+        return $this->createdAt->format(DateTimeHelper::DEFAULT_DATE_FORMAT);
+    }
+
+    /**
      * @ORM\PrePersist
      * @param \DateTime $createdAt
      */

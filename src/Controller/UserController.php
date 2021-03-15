@@ -32,6 +32,8 @@ class UserController extends BaseController
             ->findAll();
 
         $filters = [
+            'startDate' => true,
+            'endDate' => true,
             'sex' => Sex::getFormCollection(),
             'types'=> $userTypeRepository->findAll()
         ];
