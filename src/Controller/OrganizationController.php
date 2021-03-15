@@ -6,7 +6,6 @@ use App\Controller\Common\BaseController;
 use App\Entity\Organization;
 use App\Form\OrganizationType;
 use App\Repository\OrganizationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

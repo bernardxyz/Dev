@@ -1,3 +1,0 @@
-App\Entity\NotificationType:
-  notificationType_{1}:
-    type: Poruka

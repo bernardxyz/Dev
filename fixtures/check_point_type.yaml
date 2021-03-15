@@ -1,5 +1,0 @@
-App\Entity\CheckPointType:
-    checkPointType_{1..10}:
-      name: <name()>
-      absTime: <datetime()>
-      relTime: <datetime()>

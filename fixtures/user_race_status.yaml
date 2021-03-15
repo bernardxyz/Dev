@@ -1,3 +1,0 @@
-App\Entity\UserRaceStatus:
-  userRaceStatus_{1..5}:
-    status: 'Prijavljen'
