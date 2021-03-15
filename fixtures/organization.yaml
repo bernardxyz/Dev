@@ -1,7 +1,0 @@
-App\Entity\Organization:
-  organization_{1..10}:
-    name: '<company()>'
-    address: '<address()>'
-    email: '<email()>'
-    phoneNumber: '<phonenumber()>'
-    city: '@city_<numberBetween(1,10)>'

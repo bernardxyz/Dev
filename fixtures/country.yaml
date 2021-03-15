@@ -1,3 +1,0 @@
-App\Entity\Country:
-    country_{1..10}:
-       name: <country()>

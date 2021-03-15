@@ -1,8 +1,0 @@
-App\Entity\Notifications:
-  notifications_{1..10}:
-    time: '<datetime()>'
-    createtAt: '<datetime()>'
-    text: '<realText()>'
-    user: '@user_<numberBetween(1,10)>'
-    organization: '@organization_<numberBetween(1,10)>'
-    notificationType: '@notificationType_1'

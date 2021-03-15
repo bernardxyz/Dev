@@ -1,4 +1,0 @@
-App\Entity\City:
-    city_{1..10}:
-        name: <city()>
-        country: '@country_<numberBetween(1,10)>'
