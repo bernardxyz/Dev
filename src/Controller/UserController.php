@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Common\BaseController;
 use App\Entity\User;
 use App\Form\User1Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,8 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/user")
  */
-class UserController extends AbstractController
+class UserController extends BaseController
 {
+    CONST BREAD_CRUMB = 'Organization';
+    CONST ACTIVE_MENU = 'user';
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -23,9 +26,13 @@ class UserController extends AbstractController
             ->getRepository(User::class)
             ->findAll();
 
-        return $this->render('user/index.html.twig', [
-            'users' => $users,
-        ]);
+        return $this->render('user/index.html.twig',
+            [
+                'users' => $users,
+                'breadCrumb' => self::BREAD_CRUMB,
+                'activeMenu' => $this->activeMenu(self::ACTIVE_MENU)
+            ]
+        );
     }
 
     /**
@@ -45,10 +52,14 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('user/new.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView(),
+                'breadCrumb' => self::BREAD_CRUMB,
+                'activeMenu' => $this->activeMenu(self::ACTIVE_MENU)
+            ]
+        );
     }
 
     /**
@@ -56,9 +67,13 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
+        return $this->render('user/show.html.twig',
+            [
+                'user' => $user,
+                'breadCrumb' => self::BREAD_CRUMB,
+                'activeMenu' => $this->activeMenu(self::ACTIVE_MENU)
+            ]
+        );
     }
 
     /**
@@ -75,10 +90,14 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('user/edit.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView(),
+                'breadCrumb' => self::BREAD_CRUMB,
+                'activeMenu' => $this->activeMenu(self::ACTIVE_MENU)
+            ]
+        );
     }
 
     /**

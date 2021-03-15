@@ -22,10 +22,10 @@
 </head>
 <body>
 
-{% if app.user.fulln is defined  %}
-    {% include 'common/app_header.html.twig' %}
-    {% include 'common/app_sidebar.html.twig' %}
-{% endif %}
+
+{% include 'common/app_header.html.twig' %}
+{% include 'common/app_sidebar.html.twig' %}
+
 {% block body %}{% endblock %}
 
 {% block javascripts %}
